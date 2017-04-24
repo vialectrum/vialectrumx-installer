@@ -34,6 +34,7 @@ function install_pip {
 }
 
 function install_pyrocksdb {
+	export CPLUS_INCLUDE_PATH=${CPLUS_INCLUDE_PATH}:/usr/include/rocksdb
 	python3 -m pip install "python-rocksdb" || _error "Could not install pyrocksdb" 1
 }
 
