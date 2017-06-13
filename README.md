@@ -1,16 +1,16 @@
-# electrumx-installer
-A script to automate the installation of electrumx 🤖
+# vialectrumx-installer
+A script to automate the installation of vialectrumx 🤖
 
-Installing electrumx isn't really straight-forward (yet). You have to install the latest version of Python and various dependencies for
-one of the database engines. Then you have to integrate electrumx into your init system.
+Installing vialectrumx isn't really straight-forward (yet). You have to install the latest version of Python and various dependencies for
+one of the database engines. Then you have to integrate vialectrumx into your init system.
 
-`electrumx-installer` simplifies this process to running a single command. All that's left to do for you
+`vialectrumx-installer` simplifies this process to running a single command. All that's left to do for you
 is to customise the configuration.
 
 ## Usage
 Clone the repository and run `install.sh` as root:
 
-    git clone https://github.com/bauerj/electrumx-installer
+    git clone https://github.com/vialectrum/vialectrumx-server electrumx-installer
     cd electrumx-installer
     sudo -H ./install.sh
 
