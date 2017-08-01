@@ -13,6 +13,7 @@ function assert_pyrocksdb {
 
 function install_electrumx {
 	_DIR=$(pwd)
+        python3 -m pip install multidict || true
 	rm -rf "/tmp/electrumx/"
 	git clone https://github.com/vialectrum/vialectrumx-server /tmp/electrumx
 	cd /tmp/electrumx
@@ -51,8 +52,8 @@ function generate_cert {
 	_DIR=$(pwd)
 	mkdir -p /etc/electrumx/
 	cd /etc/electrumx
-	openssl genrsa -des3 -passout pass:x -out server.pass.key 2048
-	openssl rsa -passin pass:x -in server.pass.key -out server.key
+	openssl genrsa -des3 -passout pass:xxxx -out server.pass.key 2048
+	openssl rsa -passin pass:xxxx -in server.pass.key -out server.key
 	rm server.pass.key
 	openssl req -new -key server.key -batch -out server.csr
 	openssl x509 -req -days 1825 -in server.csr -signkey server.key -out server.crt
@@ -60,6 +61,9 @@ function generate_cert {
 	chown electrumx:electrumx /etc/electrumx -R
 	chmod 600 /etc/electrumx/server*
 	cd $_DIR
-	echo "SSL_CERTFILE=/etc/electrumx/server.crt" >> /etc/electrumx.conf
+	echo -e "\nSSL_CERTFILE=/etc/electrumx/server.crt" >> /etc/electrumx.conf
 	echo "SSL_KEYFILE=/etc/electrumx/server.key" >> /etc/electrumx.conf
+        echo "TCP_PORT=50001" >> /etc/electrumx.conf
+        echo "SSL_PORT=50002" >> /etc/electrumx.conf
+        echo -e "# Listen on all interfaces:\nHOST=" >> /etc/electrumx.conf
 }
